@@ -1,7 +1,1034 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Professional personal portfolio for Zain Khaliq, Computer Science student at Seoul National University and GKS Scholar.">
+  <title>Zain Khaliq | Computer Science Portfolio</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --canvas: #181818;
+      --canvas-elevated: #303030;
+      --canvas-light: #ffffff;
+      --surface-soft-light: #f7f7f7;
+      --surface-strong-light: #ebebeb;
+      --hairline: #303030;
+      --hairline-on-light: #d2d2d2;
+      --hairline-soft: #ebebeb;
+      --ink: #ffffff;
+      --body: #969696;
+      --body-strong: #ffffff;
+      --body-on-light: #181818;
+      --muted: #666666;
+      --primary: #da291c;
+      --primary-active: #b01e0a;
+      --focus: #f6e500;
+      --max-width: 1280px;
+      --xxxs: 4px;
+      --xxs: 8px;
+      --xs: 16px;
+      --sm: 24px;
+      --md: 32px;
+      --lg: 48px;
+      --xl: 64px;
+      --xxl: 96px;
+      --super: 128px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: var(--xs);
+      left: var(--xs);
+      z-index: 20;
+      transform: translateY(-160%);
+      background: var(--ink);
+      color: var(--canvas);
+      padding: 14px var(--xs);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      min-height: var(--xl);
+      background: rgba(24, 24, 24, 0.96);
+      border-bottom: 1px solid var(--hairline);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      width: min(100% - var(--md), var(--max-width));
+      min-height: var(--xl);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--md);
+    }
+
+    .brand,
+    .nav-links a,
+    .mobile-nav summary,
+    .mobile-links a,
+    .eyebrow,
+    .badge,
+    .meta-label,
+    .button {
+      text-transform: uppercase;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--xs);
+      min-height: var(--lg);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.65px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 10px;
+      height: 28px;
+      display: inline-block;
+      background: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--sm);
+    }
+
+    .nav-links a {
+      min-height: var(--lg);
+      display: inline-flex;
+      align-items: center;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.65px;
+      text-decoration: none;
+    }
+
+    .mobile-nav {
+      display: none;
+      width: 100%;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .mobile-nav summary {
+      min-height: var(--lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.65px;
+      list-style: none;
+    }
+
+    .mobile-nav summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .mobile-nav summary::after {
+      content: "+";
+      color: var(--primary);
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .mobile-nav[open] summary::after {
+      content: "-";
+    }
+
+    .mobile-links {
+      display: grid;
+      padding-bottom: var(--xs);
+    }
+
+    .mobile-links a {
+      min-height: var(--lg);
+      display: flex;
+      align-items: center;
+      border-top: 1px solid var(--hairline);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.65px;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - var(--xl));
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      isolation: isolate;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 32%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(24, 24, 24, 0.94), rgba(24, 24, 24, 0.58) 46%, rgba(24, 24, 24, 0.16)),
+        linear-gradient(0deg, rgba(24, 24, 24, 0.94), rgba(24, 24, 24, 0.08) 52%);
+    }
+
+    .hero-inner,
+    .container,
+    .footer-inner {
+      width: min(100% - var(--md), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      padding: var(--super) 0 var(--xxl);
+    }
+
+    .eyebrow,
+    .badge,
+    .meta-label {
+      color: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      line-height: 1.4;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--xs);
+      margin: 0 0 var(--sm);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: var(--md);
+      height: 2px;
+      background: var(--primary);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin-bottom: var(--sm);
+      font-size: clamp(32px, 8vw, 80px);
+      line-height: 1.05;
+    }
+
+    h2 {
+      margin-bottom: var(--xs);
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.1;
+    }
+
+    h3 {
+      margin-bottom: var(--xs);
+      font-size: 26px;
+      line-height: 1.5;
+    }
+
+    .lead {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--xs);
+      margin-top: var(--lg);
+    }
+
+    .button {
+      min-height: var(--lg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px var(--md);
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .button.primary {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--ink);
+    }
+
+    .button.primary:active {
+      border-color: var(--primary-active);
+      background: var(--primary-active);
+    }
+
+    .button.on-light {
+      border-color: var(--body-on-light);
+      color: var(--body-on-light);
+    }
+
+    .section {
+      border-top: 1px solid var(--hairline);
+      padding: var(--xxl) 0;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: var(--md);
+      align-items: start;
+    }
+
+    .section-heading {
+      grid-column: span 5;
+    }
+
+    .section-body {
+      grid-column: 7 / -1;
+    }
+
+    .section-heading p,
+    .section-body p {
+      color: var(--body);
+    }
+
+    .profile-list,
+    .timeline,
+    .plain-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .profile-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--xs);
+      margin-top: var(--lg);
+    }
+
+    .profile-list li {
+      border-top: 1px solid var(--hairline);
+      padding-top: var(--sm);
+    }
+
+    .profile-list strong,
+    .timeline strong,
+    .contact-link {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .profile-list span,
+    .timeline span,
+    .project-card p,
+    .course-card p,
+    .ai-panel p {
+      color: var(--body);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--xs);
+      margin-top: var(--lg);
+    }
+
+    .project-card,
+    .course-card,
+    .ai-panel,
+    .skill-card {
+      border: 1px solid var(--hairline);
+      background: var(--canvas-elevated);
+      padding: var(--sm);
+    }
+
+    .project-card {
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--lg);
+    }
+
+    .project-card p,
+    .course-card p,
+    .ai-panel p {
+      margin-bottom: 0;
+    }
+
+    .project-number {
+      color: var(--primary);
+      font-size: clamp(44px, 7vw, 80px);
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    .cv-band,
+    .ai-band {
+      background: var(--canvas-light);
+      color: var(--body-on-light);
+    }
+
+    .cv-band .section,
+    .ai-band .section {
+      border-top-color: var(--hairline-on-light);
+    }
+
+    .cv-band .eyebrow,
+    .ai-band .eyebrow,
+    .cv-band .section-heading p,
+    .cv-band .section-body p,
+    .ai-band .section-heading p,
+    .ai-band .section-body p,
+    .cv-band .timeline span,
+    .ai-band .ai-panel p {
+      color: var(--muted);
+    }
+
+    .cv-band .timeline strong,
+    .cv-band h2,
+    .cv-band h3,
+    .ai-band h2,
+    .ai-band h3,
+    .ai-band strong {
+      color: var(--body-on-light);
+    }
+
+    .cv-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: var(--md);
+    }
+
+    .cv-panel {
+      border-top: 1px solid var(--hairline-on-light);
+      padding-top: var(--md);
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: var(--sm);
+      border-top: 1px solid var(--hairline-on-light);
+      padding: var(--sm) 0;
+    }
+
+    .timeline p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--xs);
+    }
+
+    .skill-card {
+      background: var(--surface-soft-light);
+      border-color: var(--hairline-on-light);
+      color: var(--body-on-light);
+    }
+
+    .skill-card ul,
+    .course-list,
+    .contact-list {
+      margin: var(--xs) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skill-card li,
+    .course-list li,
+    .contact-list li {
+      border-top: 1px solid var(--hairline-on-light);
+      padding: var(--xs) 0;
+      color: var(--muted);
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--xs);
+      margin-top: var(--lg);
+    }
+
+    .course-card {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-band {
+      background: var(--primary);
+      color: var(--ink);
+      padding: var(--xxl) 0;
+    }
+
+    .contact-band .eyebrow,
+    .contact-band p,
+    .contact-band a {
+      color: var(--ink);
+    }
+
+    .contact-band .eyebrow::before {
+      background: var(--ink);
+    }
+
+    .contact-band h2 {
+      max-width: 780px;
+      margin-bottom: var(--md);
+    }
+
+    .contact-list {
+      max-width: 720px;
+      margin-top: var(--lg);
+    }
+
+    .contact-list li {
+      border-top-color: rgba(255, 255, 255, 0.48);
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--md);
+    }
+
+    .contact-link {
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .ai-panel {
+      background: var(--surface-soft-light);
+      border-color: var(--hairline-on-light);
+    }
+
+    .ai-panel code {
+      color: var(--body-on-light);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--hairline);
+      padding: var(--xl) 0 var(--lg);
+      color: var(--body);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: var(--md);
+    }
+
+    .footer p {
+      margin-bottom: 0;
+      font-size: 13px;
+    }
+
+    .footer a {
+      display: block;
+      margin-bottom: var(--xxs);
+      color: var(--body);
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: var(--ink);
+    }
+
+    @media (max-width: 1120px) {
+      .nav-links {
+        gap: var(--xs);
+      }
+
+      .cv-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .section-heading,
+      .section-body {
+        grid-column: 1 / -1;
+      }
+
+      .footer-inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .site-header {
+        position: static;
+      }
+
+      .nav {
+        min-height: auto;
+        display: grid;
+        padding: var(--xs) 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .hero {
+        min-height: 760px;
+      }
+
+      .hero-photo {
+        object-position: 58% center;
+      }
+
+      .hero::after {
+        background:
+          linear-gradient(0deg, rgba(24, 24, 24, 0.96), rgba(24, 24, 24, 0.16) 68%),
+          linear-gradient(90deg, rgba(24, 24, 24, 0.78), rgba(24, 24, 24, 0.1));
+      }
+
+      .hero-inner {
+        padding: var(--xxl) 0 var(--xl);
+      }
+
+      .section,
+      .contact-band {
+        padding: var(--xl) 0;
+      }
+
+      .feature-grid,
+      .course-grid,
+      .profile-list,
+      .skill-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline li,
+      .contact-list li {
+        grid-template-columns: 1fr;
+        display: grid;
+        gap: var(--xxs);
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
 <body>
-  <h1>Welcome to my Personal Page</h1>
-  <p>Hosted on Github Pages!</p>
-  </body>
-  </html>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="Zain Khaliq home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Zain Khaliq
+      </a>
+      <div class="nav-links" aria-label="Section links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#resume">CV</a>
+        <a href="#projects">Projects</a>
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact</a>
+        <a href="#ai-usage">AI Usage</a>
+      </div>
+      <details class="mobile-nav">
+        <summary>Menu</summary>
+        <div class="mobile-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#resume">CV</a>
+          <a href="#projects">Projects</a>
+          <a href="#courses">Courses</a>
+          <a href="#contact">Contact</a>
+          <a href="#ai-usage">AI Usage</a>
+        </div>
+      </details>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <img class="hero-photo" src="assets/profile.jpg" alt="Portrait of Zain Khaliq">
+      <div class="hero-inner">
+        <p class="eyebrow">Computer Science Portfolio</p>
+        <h1 id="hero-title">Zain Khaliq</h1>
+        <p class="lead">Computer Science student at Seoul National University and GKS Scholar, passionate about building impactful technology products and turning real world problems into elegant software solutions.</p>
+        <div class="actions" aria-label="Primary portfolio links">
+          <a class="button primary" href="assets/cv.pdf" download>Download CV</a>
+          <a class="button" href="#projects">View Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container section-grid">
+        <div class="section-heading">
+          <p class="eyebrow">About Me</p>
+          <h2 id="about-title">Building toward useful products and ambitious teams.</h2>
+        </div>
+        <div class="section-body">
+          <p>I am a Computer Science student at Seoul National University and a GKS Scholar passionate about building impactful tech products. I aspire to launch my own startup and work at a top tech company. I love turning real world problems into elegant software solutions.</p>
+          <ul class="profile-list" aria-label="Personal highlights">
+            <li>
+              <strong>Major</strong>
+              <span>Computer Science, Seoul National University</span>
+            </li>
+            <li>
+              <strong>Scholarship</strong>
+              <span>GKS Global Korea Scholarship Scholar</span>
+            </li>
+            <li>
+              <strong>Focus</strong>
+              <span>Software products, startups, and practical problem solving</span>
+            </li>
+            <li>
+              <strong>Languages</strong>
+              <span>English, Urdu, Punjabi, Korean</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="cv-band">
+      <section class="section" id="resume" aria-labelledby="resume-title">
+        <div class="container">
+          <div class="section-grid">
+            <div class="section-heading">
+              <p class="eyebrow">CV / Resume</p>
+              <h2 id="resume-title">Education, skills, and experience.</h2>
+            </div>
+            <div class="section-body">
+              <p>Details below are drawn from the CV PDF in this repository, with current portfolio contact information supplied by Zain.</p>
+              <div class="actions">
+                <a class="button on-light" href="assets/cv.pdf" download>Download CV PDF</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-layout">
+            <section class="cv-panel" aria-labelledby="education-title">
+              <h3 id="education-title">Education</h3>
+              <ul class="timeline">
+                <li>
+                  <span>2025 - Present</span>
+                  <div>
+                    <strong>Bachelor's in Computer Science and Engineering</strong>
+                    <p>Seoul National University, Gwanak. GKS Global Korea Scholarship Scholar.</p>
+                  </div>
+                </li>
+                <li>
+                  <span>2020 - 2022</span>
+                  <div>
+                    <strong>High School</strong>
+                    <p>Read Foundation College Bhimber, Azad Kashmir. Graduated with 95% and a bronze medal in the state.</p>
+                  </div>
+                </li>
+              </ul>
+            </section>
+
+            <section class="cv-panel" aria-labelledby="skills-title">
+              <h3 id="skills-title">Skills</h3>
+              <div class="skill-grid">
+                <div class="skill-card">
+                  <p class="meta-label">Technical</p>
+                  <ul>
+                    <li>Python</li>
+                    <li>MS Office</li>
+                    <li>Canva</li>
+                    <li>Picsart</li>
+                  </ul>
+                </div>
+                <div class="skill-card">
+                  <p class="meta-label">Languages & Certificates</p>
+                  <ul>
+                    <li>English, Urdu, Punjabi, Korean</li>
+                    <li>IELTS 8 bands</li>
+                    <li>SAT 1520</li>
+                    <li>TOPIK Level 5</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section class="cv-panel" aria-labelledby="experience-title">
+              <h3 id="experience-title">Experience</h3>
+              <ul class="timeline">
+                <li>
+                  <span>2024 - Present</span>
+                  <div>
+                    <strong>Executive Team Member, Pakistan Student Association Korea</strong>
+                    <p>Assist with event organization, funding proposal development, and guidance for incoming Pakistani undergraduate students.</p>
+                  </div>
+                </li>
+                <li>
+                  <span>2021 - 2023</span>
+                  <div>
+                    <strong>Junior Programmer, CTS</strong>
+                    <p>Worked as a junior programmer and guided students with academics and the admissions process.</p>
+                  </div>
+                </li>
+              </ul>
+            </section>
+
+            <section class="cv-panel" aria-labelledby="activities-title">
+              <h3 id="activities-title">Activities</h3>
+              <ul class="timeline">
+                <li>
+                  <span>2020 - 2022</span>
+                  <div>
+                    <strong>Captain, School Cricket Team</strong>
+                    <p>Led the team to wins in various district-level tournaments.</p>
+                  </div>
+                </li>
+                <li>
+                  <span>2020 - 2024</span>
+                  <div>
+                    <strong>Volunteer Work</strong>
+                    <p>Supported Read Foundation orphan support initiatives and volunteered at DHQ Hospital.</p>
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-grid">
+          <div class="section-heading">
+            <p class="eyebrow">Projects</p>
+            <h2 id="projects-title">Products shaped around real needs.</h2>
+          </div>
+          <div class="section-body">
+            <p>Two product ideas that reflect a focus on practical software: simplifying finance for small vendors and making healthcare discovery easier for everyday users.</p>
+          </div>
+        </div>
+
+        <div class="feature-grid" aria-label="Portfolio projects">
+          <article class="project-card">
+            <div>
+              <span class="project-number" aria-hidden="true">01</span>
+              <p class="badge">Finance Automation</p>
+              <h3>WhatsApp Ledger Finance App</h3>
+            </div>
+            <p>A WhatsApp based app that automates tax filing for small vendors and helps them manage their finances easily.</p>
+          </article>
+          <article class="project-card">
+            <div>
+              <span class="project-number" aria-hidden="true">02</span>
+              <p class="badge">Healthcare Search</p>
+              <h3>Doctor Finder Website</h3>
+            </div>
+            <p>A website that helps users find the most suitable doctor near them based on their needs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="courses" aria-labelledby="courses-title">
+      <div class="container">
+        <div class="section-grid">
+          <div class="section-heading">
+            <p class="eyebrow">Courses I Plan to Take</p>
+            <h2 id="courses-title">Foundations for stronger systems thinking.</h2>
+          </div>
+          <div class="section-body">
+            <p>Upcoming coursework is focused on the core ideas behind efficient software and modern computing systems.</p>
+          </div>
+        </div>
+        <div class="course-grid" aria-label="Planned courses">
+          <article class="course-card">
+            <p class="badge">Planned Course</p>
+            <h3>Algorithms</h3>
+            <p>Studying algorithmic design, analysis, and problem-solving patterns for efficient software.</p>
+          </article>
+          <article class="course-card">
+            <p class="badge">Planned Course</p>
+            <h3>Computer Architecture</h3>
+            <p>Learning how hardware, memory, and instruction-level design shape the performance of software systems.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-band" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Open to meaningful software, product, and startup conversations.</h2>
+        <p>Reach out for collaboration, internships, technical projects, or conversations around useful products.</p>
+        <ul class="contact-list">
+          <li>
+            <span class="meta-label">Email</span>
+            <a class="contact-link" href="mailto:zainkhaliq@snu.ac.kr">zainkhaliq@snu.ac.kr</a>
+          </li>
+          <li>
+            <span class="meta-label">GitHub</span>
+            <a class="contact-link" href="https://github.com/zains-code">github.com/zains-code</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="ai-band">
+      <section class="section" id="ai-usage" aria-labelledby="ai-title">
+        <div class="container section-grid">
+          <div class="section-heading">
+            <p class="eyebrow">AI Usage</p>
+            <h2 id="ai-title">Build disclosure.</h2>
+          </div>
+          <div class="section-body">
+            <div class="ai-panel">
+              <p><strong>Tool:</strong> Codex</p>
+              <p><strong>Prompt:</strong> <code>"Build a complete personal portfolio website"</code></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Zain Khaliq. Static portfolio for GitHub Pages.</p>
+      <div>
+        <p class="meta-label">Portfolio</p>
+        <a href="#about">About</a>
+        <a href="#resume">CV</a>
+      </div>
+      <div>
+        <p class="meta-label">Work</p>
+        <a href="#projects">Projects</a>
+        <a href="#courses">Courses</a>
+      </div>
+      <div>
+        <p class="meta-label">Contact</p>
+        <a href="mailto:zainkhaliq@snu.ac.kr">Email</a>
+        <a href="https://github.com/zains-code">GitHub</a>
+      </div>
+      <div>
+        <p class="meta-label">Document</p>
+        <a href="assets/cv.pdf" download>Download CV</a>
+        <a href="#ai-usage">AI Usage</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".mobile-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        link.closest("details").removeAttribute("open");
+      });
+    });
+  </script>
+</body>
+</html>
